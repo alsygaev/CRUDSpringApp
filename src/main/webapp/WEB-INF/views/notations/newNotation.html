@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New notation</title>
+</head>
+<body>
+
+<form th:method="POST" th:action="@{/notations}" th:object="${notation}">
+    <label for="description">Description: </label>
+    <input type="text" th:field="*{description}" id="description"/>
+    <div style="color: darkred" th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Description error</div>
+
+    <br/>
+    <hr/>
+
+    <label for="time">Time: </label>
+    <input type="text" th:field="*{time}" id="time"/>
+    <div th:if="${#fields.hasErrors('time')}" th:errors="*{time}">Time error</div>
+
+    <br/>
+    <hr/>
+
+    <input type="submit" value="Create!"/>
+</form>
+
+</body>
+</html>
