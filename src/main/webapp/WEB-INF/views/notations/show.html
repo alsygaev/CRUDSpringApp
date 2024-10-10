@@ -1,10 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>$Title$</title>
+  <title>Update notation</title>
 </head>
 <body>
-$END$
+
+<!-- Форма для обновления записи -->
+<form th:method="post" th:action="@{/notations/{id}(id=${notation.getId()})}" th:object="${notation}">
+  <input type="hidden" name="_method" value="PATCH" />
+
+  <label for="description">Description: </label>
+  <input type="text" th:field="*{description}" id="description"/>
+
+  <br/>
+
+  <label for="time">Time: </label>
+  <input type="text" th:field="*{time}" id="time"/>
+
+  <input type="submit" value="Update!"/>
+</form>
+
+<!-- Отдельная форма для удаления записи -->
+<form th:method="post" th:action="@{/notations/{id}(id=${notation.getId()})}">
+  <input type="hidden" name="_method" value="DELETE" />
+  <input type="submit" value="Delete"/>
+</form>
+
 </body>
 </html>
